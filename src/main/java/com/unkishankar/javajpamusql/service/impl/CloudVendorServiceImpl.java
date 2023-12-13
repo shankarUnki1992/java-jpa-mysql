@@ -10,7 +10,7 @@ import com.unkishankar.javajpamusql.service.CloudVendorService;
 
 @Service
 public class CloudVendorServiceImpl implements CloudVendorService {
-    CloudVendorRepository cloudVendorRepository;
+    private final CloudVendorRepository cloudVendorRepository;
 
     public CloudVendorServiceImpl(CloudVendorRepository cloudVendorRepository) {
         this.cloudVendorRepository = cloudVendorRepository;

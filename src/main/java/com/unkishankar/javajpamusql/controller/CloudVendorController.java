@@ -17,13 +17,13 @@ import com.unkishankar.javajpamusql.service.CloudVendorService;
 @RestController
 @RequestMapping("/cloudvendor")
 public class CloudVendorController {
-    CloudVendorService cloudVendorService;
+    private final CloudVendorService cloudVendorService;
 
     public CloudVendorController(CloudVendorService cloudVendorService) {
         this.cloudVendorService = cloudVendorService;
     }
 
-    @GetMapping("{vendorId}")
+    @GetMapping("/{vendorId}")
     public CloudVendor getCloudVendorById(@PathVariable("vendorId") String vendorId) {
         return cloudVendorService.getCloudVendor(vendorId);
     }
@@ -45,7 +45,7 @@ public class CloudVendorController {
         return "Cloudvendor updated successfully !";
     }
 
-    @DeleteMapping("{vendorId}")
+    @DeleteMapping("/{vendorId}")
     public String deleteCloudVendorDetails(@PathVariable("vendorId") String vendorId) {
         cloudVendorService.deleteCloudVendor(vendorId);
         return "Cloud vendor deleted successfully !";
