@@ -2,6 +2,8 @@ package com.unkishankar.javajpamusql.controller;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.unkishankar.javajpamusql.model.CloudVendor;
+import com.unkishankar.javajpamusql.response.ResponseHandler;
 import com.unkishankar.javajpamusql.service.CloudVendorService;
 
 @RestController
@@ -24,13 +27,14 @@ public class CloudVendorController {
     }
 
     @GetMapping("/{vendorId}")
-    public CloudVendor getCloudVendorById(@PathVariable("vendorId") String vendorId) {
-        return cloudVendorService.getCloudVendor(vendorId);
+    public ResponseEntity<Object> getCloudVendorById(@PathVariable("vendorId") String vendorId) {
+        return ResponseHandler.responseBuilder("Success", HttpStatus.OK, cloudVendorService.getCloudVendor(vendorId));
+
     }
 
     @GetMapping("/")
-    public List<CloudVendor> getAllCloudVendorById() {
-        return cloudVendorService.getAllCloudVendors();
+    public ResponseEntity<Object> getAllCloudVendorById() {
+        return ResponseHandler.responseBuilder("Success", HttpStatus.OK, cloudVendorService.getAllCloudVendors());
     }
 
     @PostMapping()
