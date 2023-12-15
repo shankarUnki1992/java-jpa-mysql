@@ -35,6 +35,7 @@ public class CloudVendorController {
     @GetMapping("/")
     public ResponseEntity<Object> getAllCloudVendorById() {
         return ResponseHandler.responseBuilder("Success", HttpStatus.OK, cloudVendorService.getAllCloudVendors());
+        // return cloudVendorService.getAllCloudVendors();
     }
 
     @PostMapping()
