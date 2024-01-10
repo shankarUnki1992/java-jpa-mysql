@@ -1,7 +1,6 @@
 package com.unkishankar.javajpamusql.controller;
 
-import java.util.List;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -20,6 +19,7 @@ import com.unkishankar.javajpamusql.service.CloudVendorService;
 @RestController
 @RequestMapping("/cloudvendor")
 public class CloudVendorController {
+    @Autowired
     private final CloudVendorService cloudVendorService;
 
     public CloudVendorController(CloudVendorService cloudVendorService) {
@@ -27,7 +27,7 @@ public class CloudVendorController {
     }
 
     @GetMapping("/{vendorId}")
-    public ResponseEntity<Object> getCloudVendorById(@PathVariable("vendorId") String vendorId) {
+    public ResponseEntity<Object> getCloudVendorById(@PathVariable("vendorId") int vendorId) {
         return ResponseHandler.responseBuilder("Success", HttpStatus.OK, cloudVendorService.getCloudVendor(vendorId));
 
     }
@@ -51,7 +51,7 @@ public class CloudVendorController {
     }
 
     @DeleteMapping("/{vendorId}")
-    public String deleteCloudVendorDetails(@PathVariable("vendorId") String vendorId) {
+    public String deleteCloudVendorDetails(@PathVariable("vendorId") int vendorId) {
         cloudVendorService.deleteCloudVendor(vendorId);
         return "Cloud vendor deleted successfully !";
     }
